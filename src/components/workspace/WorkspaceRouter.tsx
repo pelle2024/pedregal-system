@@ -5,6 +5,7 @@ import { VenuesTab } from '../tabs/VenuesTab';
 import { MenusTab } from '../tabs/MenusTab';
 import { ModifiersTab } from '../tabs/ModifiersTab';
 import { AllItemsTab } from '../tabs/AllItemsTab';
+import { CatalogTab } from '../tabs/CatalogTab';
 import { CategoriesTab } from '../tabs/CategoriesTab';
 import { CollectionsTab } from '../tabs/CollectionsTab';
 import { BundlesTab } from '../tabs/BundlesTab';
@@ -23,6 +24,8 @@ export function WorkspaceRouter() {
       return <ModifiersTab />;
     case 'all-items':
       return <AllItemsTab />;
+    case 'catalog':
+      return <CatalogTab />;
     case 'categories':
       return <CategoriesTab />;
     case 'collections':

@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 
 const TAB_LABELS: Record<string, string> = {
   venues: 'Venues',
+  catalog: 'Catalog',
   'all-items': 'All Items',
   menus: 'Menus',
   modifiers: 'Modifiers',
@@ -33,9 +34,9 @@ export function TabBar() {
     const vertical = (level === 'venue' && venueVertical) ? venueVertical : bizVertical;
     if (level === 'business') {
       switch (vertical) {
-        case 'restaurant': return ['venues', 'all-items', 'menus', 'modifiers', 'bundles'];
-        case 'hybrid': return ['venues', 'all-items', 'menus', 'collections', 'modifiers', 'bundles'];
-        default: return ['venues', 'all-items', 'collections', 'modifiers'];
+        case 'restaurant': return ['venues', 'catalog', 'all-items', 'menus', 'modifiers', 'bundles'];
+        case 'hybrid': return ['venues', 'catalog', 'all-items', 'menus', 'collections', 'modifiers', 'bundles'];
+        default: return ['venues', 'catalog', 'all-items', 'collections', 'modifiers'];
       }
     }
     switch (vertical) {
