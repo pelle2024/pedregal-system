@@ -8,6 +8,7 @@ export const SCENARIOS: ScenarioConfig[] = [
   { id: 'bloom', title: 'Bloom & Co', subtitle: 'Single-venue flower shop', verticalType: 'flower', isMultiVenue: false },
   { id: 'burger-chain', title: 'Burger Chain', subtitle: 'Multi-venue restaurant (3 locations)', verticalType: 'restaurant', isMultiVenue: true },
   { id: 'quickstop', title: 'QuickStop Convenience', subtitle: 'Hybrid (grocery + deli menu, 2 locations)', verticalType: 'hybrid', isMultiVenue: true },
+  { id: 'freshmart', title: 'FreshMart Groceries', subtitle: 'Multi-venue grocery chain (7 locations)', verticalType: 'grocery', isMultiVenue: true },
 ];
 
 // ─── Mario's Pizzeria ────────────────────────────────────────────
@@ -308,6 +309,203 @@ const quickstopCollections: Collection[] = [
   { id: 'col-tech', businessId: 'biz-qs', name: 'Tech Accessories', status: 'active', productIds: ['p-qs-charger', 'p-qs-usbc'], sharedToVenueIds: ['v-qs-main'] },
 ];
 
+// ─── FreshMart Groceries ────────────────────────────────────────
+
+const freshBusiness: Business = { id: 'biz-fm', name: 'FreshMart Groceries', verticalType: 'grocery', venueIds: ['v-fm-city', 'v-fm-west', 'v-fm-north', 'v-fm-harbor', 'v-fm-uni', 'v-fm-east', 'v-fm-south'] };
+const freshVenues: Venue[] = [
+  { id: 'v-fm-city', businessId: 'biz-fm', name: 'City Center', address: '1 Main Plaza', verticalType: 'grocery' },
+  { id: 'v-fm-west', businessId: 'biz-fm', name: 'Westside Mall', address: '88 West Ave', verticalType: 'grocery' },
+  { id: 'v-fm-north', businessId: 'biz-fm', name: 'North End', address: '340 Park Road', verticalType: 'grocery' },
+  { id: 'v-fm-harbor', businessId: 'biz-fm', name: 'Harbor District', address: '5 Dockside Lane', verticalType: 'grocery' },
+  { id: 'v-fm-uni', businessId: 'biz-fm', name: 'University Campus', address: '12 College St', verticalType: 'grocery' },
+  { id: 'v-fm-east', businessId: 'biz-fm', name: 'Eastgate Plaza', address: '200 East Blvd', verticalType: 'grocery' },
+  { id: 'v-fm-south', businessId: 'biz-fm', name: 'South Park', address: '77 South Ring', verticalType: 'grocery' },
+];
+
+const freshCategories: Category[] = [
+  { id: 'cat-fm-produce', businessId: 'biz-fm', name: 'Fruits & Vegetables', sortOrder: 0 },
+  { id: 'cat-fm-dairy', businessId: 'biz-fm', name: 'Dairy & Eggs', sortOrder: 1 },
+  { id: 'cat-fm-bakery', businessId: 'biz-fm', name: 'Bakery', sortOrder: 2 },
+  { id: 'cat-fm-meat', businessId: 'biz-fm', name: 'Meat & Seafood', sortOrder: 3 },
+  { id: 'cat-fm-bev', businessId: 'biz-fm', name: 'Beverages', sortOrder: 4 },
+  { id: 'cat-fm-snacks', businessId: 'biz-fm', name: 'Snacks', sortOrder: 5 },
+  { id: 'cat-fm-house', businessId: 'biz-fm', name: 'Household', sortOrder: 6 },
+  { id: 'cat-fm-care', businessId: 'biz-fm', name: 'Personal Care', sortOrder: 7 },
+];
+
+const freshProducts: Product[] = [
+  // Fruits & Vegetables
+  { id: 'p-fm-bananas', businessId: 'biz-fm', title: 'Organic Bananas', description: 'Fair-trade organic bananas, bunch', image: '/placeholder.svg', categoryId: 'cat-fm-produce', modifierGroupIds: [] },
+  { id: 'p-fm-avocado', businessId: 'biz-fm', title: 'Avocado Pack (3)', description: 'Ripe Hass avocados', image: '/placeholder.svg', categoryId: 'cat-fm-produce', modifierGroupIds: [] },
+  { id: 'p-fm-spinach', businessId: 'biz-fm', title: 'Baby Spinach 200g', description: 'Pre-washed baby spinach', image: '/placeholder.svg', categoryId: 'cat-fm-produce', modifierGroupIds: [] },
+  { id: 'p-fm-tomatoes', businessId: 'biz-fm', title: 'Cherry Tomatoes 250g', description: 'Vine-ripened cherry tomatoes', image: '/placeholder.svg', categoryId: 'cat-fm-produce', modifierGroupIds: [] },
+  { id: 'p-fm-strawberries', businessId: 'biz-fm', title: 'Strawberries 400g', description: 'Seasonal fresh strawberries', image: '/placeholder.svg', categoryId: 'cat-fm-produce', modifierGroupIds: [] },
+  { id: 'p-fm-broccoli', businessId: 'biz-fm', title: 'Broccoli Head', description: 'Fresh green broccoli', image: '/placeholder.svg', categoryId: 'cat-fm-produce', modifierGroupIds: [] },
+  // Dairy & Eggs
+  { id: 'p-fm-milk', businessId: 'biz-fm', title: 'Whole Milk 1L', description: 'Full-fat pasteurized milk', image: '/placeholder.svg', categoryId: 'cat-fm-dairy', modifierGroupIds: [] },
+  { id: 'p-fm-eggs', businessId: 'biz-fm', title: 'Free-Range Eggs (12)', description: 'Large free-range eggs', image: '/placeholder.svg', categoryId: 'cat-fm-dairy', modifierGroupIds: [] },
+  { id: 'p-fm-yogurt', businessId: 'biz-fm', title: 'Greek Yogurt 500g', description: 'Thick strained Greek yogurt', image: '/placeholder.svg', categoryId: 'cat-fm-dairy', modifierGroupIds: [] },
+  { id: 'p-fm-cheddar', businessId: 'biz-fm', title: 'Cheddar Cheese Block 400g', description: 'Aged cheddar cheese', image: '/placeholder.svg', categoryId: 'cat-fm-dairy', modifierGroupIds: [] },
+  { id: 'p-fm-butter', businessId: 'biz-fm', title: 'Butter 250g', description: 'Unsalted premium butter', image: '/placeholder.svg', categoryId: 'cat-fm-dairy', modifierGroupIds: [] },
+  { id: 'p-fm-oatmilk', businessId: 'biz-fm', title: 'Oat Milk 1L', description: 'Barista-edition oat milk', image: '/placeholder.svg', categoryId: 'cat-fm-dairy', modifierGroupIds: [] },
+  // Bakery
+  { id: 'p-fm-sourdough', businessId: 'biz-fm', title: 'Sourdough Loaf', description: 'Artisan sourdough bread', image: '/placeholder.svg', categoryId: 'cat-fm-bakery', modifierGroupIds: [] },
+  { id: 'p-fm-croissants', businessId: 'biz-fm', title: 'Croissants (4)', description: 'Butter croissants', image: '/placeholder.svg', categoryId: 'cat-fm-bakery', modifierGroupIds: [] },
+  { id: 'p-fm-multigrain', businessId: 'biz-fm', title: 'Multigrain Bread', description: 'Whole grain sliced bread', image: '/placeholder.svg', categoryId: 'cat-fm-bakery', modifierGroupIds: [] },
+  { id: 'p-fm-ciabatta', businessId: 'biz-fm', title: 'Ciabatta Rolls (6)', description: 'Italian-style ciabatta rolls', image: '/placeholder.svg', categoryId: 'cat-fm-bakery', modifierGroupIds: [] },
+  // Meat & Seafood
+  { id: 'p-fm-chicken', businessId: 'biz-fm', title: 'Chicken Breast 500g', description: 'Skinless chicken breast fillets', image: '/placeholder.svg', categoryId: 'cat-fm-meat', modifierGroupIds: [] },
+  { id: 'p-fm-salmon', businessId: 'biz-fm', title: 'Salmon Fillet 300g', description: 'Fresh Atlantic salmon', image: '/placeholder.svg', categoryId: 'cat-fm-meat', modifierGroupIds: [] },
+  { id: 'p-fm-ground-beef', businessId: 'biz-fm', title: 'Ground Beef 500g', description: 'Lean ground beef', image: '/placeholder.svg', categoryId: 'cat-fm-meat', modifierGroupIds: [] },
+  { id: 'p-fm-pork', businessId: 'biz-fm', title: 'Pork Chops (2)', description: 'Boneless pork loin chops', image: '/placeholder.svg', categoryId: 'cat-fm-meat', modifierGroupIds: [] },
+  { id: 'p-fm-shrimp', businessId: 'biz-fm', title: 'Shrimp 400g', description: 'Peeled and deveined shrimp', image: '/placeholder.svg', categoryId: 'cat-fm-meat', modifierGroupIds: [] },
+  // Beverages
+  { id: 'p-fm-water', businessId: 'biz-fm', title: 'Sparkling Water 6-pack', description: 'Natural sparkling mineral water', image: '/placeholder.svg', categoryId: 'cat-fm-bev', modifierGroupIds: [] },
+  { id: 'p-fm-oj', businessId: 'biz-fm', title: 'Orange Juice 1L', description: 'Freshly squeezed orange juice', image: '/placeholder.svg', categoryId: 'cat-fm-bev', modifierGroupIds: [] },
+  { id: 'p-fm-ipa', businessId: 'biz-fm', title: 'Craft IPA 330ml', description: 'Local brewery IPA', image: '/placeholder.svg', categoryId: 'cat-fm-bev', modifierGroupIds: [] },
+  { id: 'p-fm-kombucha', businessId: 'biz-fm', title: 'Kombucha Ginger 330ml', description: 'Organic ginger kombucha', image: '/placeholder.svg', categoryId: 'cat-fm-bev', modifierGroupIds: [] },
+  { id: 'p-fm-coffee', businessId: 'biz-fm', title: 'Espresso Beans 250g', description: 'Single-origin espresso beans', image: '/placeholder.svg', categoryId: 'cat-fm-bev', modifierGroupIds: [] },
+  // Snacks
+  { id: 'p-fm-chocolate', businessId: 'biz-fm', title: 'Dark Chocolate Bar 85%', description: 'Premium dark chocolate 100g', image: '/placeholder.svg', categoryId: 'cat-fm-snacks', modifierGroupIds: [] },
+  { id: 'p-fm-chips', businessId: 'biz-fm', title: 'Potato Chips Sea Salt', description: 'Kettle-cooked chips 150g', image: '/placeholder.svg', categoryId: 'cat-fm-snacks', modifierGroupIds: [] },
+  { id: 'p-fm-trail', businessId: 'biz-fm', title: 'Trail Mix 300g', description: 'Nuts, seeds, and dried fruit', image: '/placeholder.svg', categoryId: 'cat-fm-snacks', modifierGroupIds: [] },
+  { id: 'p-fm-granola', businessId: 'biz-fm', title: 'Granola Bars (6)', description: 'Oat and honey granola bars', image: '/placeholder.svg', categoryId: 'cat-fm-snacks', modifierGroupIds: [] },
+  // Household
+  { id: 'p-fm-cleaner', businessId: 'biz-fm', title: 'All-Purpose Cleaner 750ml', description: 'Eco-friendly surface cleaner', image: '/placeholder.svg', categoryId: 'cat-fm-house', modifierGroupIds: [] },
+  { id: 'p-fm-dish', businessId: 'biz-fm', title: 'Dish Soap 500ml', description: 'Concentrated dish soap', image: '/placeholder.svg', categoryId: 'cat-fm-house', modifierGroupIds: [] },
+  { id: 'p-fm-towels', businessId: 'biz-fm', title: 'Paper Towels (2-pack)', description: 'Absorbent kitchen towels', image: '/placeholder.svg', categoryId: 'cat-fm-house', modifierGroupIds: [] },
+  { id: 'p-fm-detergent', businessId: 'biz-fm', title: 'Laundry Pods (30)', description: 'Concentrated laundry detergent pods', image: '/placeholder.svg', categoryId: 'cat-fm-house', modifierGroupIds: [] },
+  // Personal Care
+  { id: 'p-fm-handsoap', businessId: 'biz-fm', title: 'Hand Soap 300ml', description: 'Moisturizing hand soap', image: '/placeholder.svg', categoryId: 'cat-fm-care', modifierGroupIds: [] },
+  { id: 'p-fm-toothpaste', businessId: 'biz-fm', title: 'Toothpaste 75ml', description: 'Fluoride whitening toothpaste', image: '/placeholder.svg', categoryId: 'cat-fm-care', modifierGroupIds: [] },
+  { id: 'p-fm-shampoo', businessId: 'biz-fm', title: 'Shampoo 400ml', description: 'Daily care shampoo', image: '/placeholder.svg', categoryId: 'cat-fm-care', modifierGroupIds: [] },
+  { id: 'p-fm-deodorant', businessId: 'biz-fm', title: 'Deodorant Roll-on', description: '48-hour protection', image: '/placeholder.svg', categoryId: 'cat-fm-care', modifierGroupIds: [] },
+];
+
+// Helper to create offers across multiple venues
+const fmVenueIds = ['v-fm-city', 'v-fm-west', 'v-fm-north', 'v-fm-harbor', 'v-fm-uni', 'v-fm-east', 'v-fm-south'];
+const fmVenueSuffix = ['ci', 'we', 'no', 'ha', 'un', 'ea', 'so'];
+
+function fmOffer(productId: string, venueIdx: number, price: number, overrides?: Partial<Offer>): Offer {
+  const pid = productId.replace('p-fm-', '');
+  return {
+    id: `o-fm-${pid}-${fmVenueSuffix[venueIdx]}`,
+    venueId: fmVenueIds[venueIdx],
+    productId,
+    price,
+    currency: '€',
+    status: 'active',
+    pausedUntil: null,
+    availabilitySchedule: null,
+    priceOverridden: false,
+    source: 'collection',
+    sourceId: null,
+    ...overrides,
+  };
+}
+
+const freshOffers: Offer[] = [
+  // ── Core products: all 7 venues ──
+  // Organic Bananas (€1.99 everywhere, except City Center €2.29)
+  ...fmVenueIds.map((_, i) => fmOffer('p-fm-bananas', i, i === 0 ? 2.29 : 1.99, i === 0 ? { priceOverridden: true, sourceId: 'col-fm-core' } : { sourceId: 'col-fm-core' })),
+  // Whole Milk
+  ...fmVenueIds.map((_, i) => fmOffer('p-fm-milk', i, 1.49, { sourceId: 'col-fm-core' })),
+  // Free-Range Eggs
+  ...fmVenueIds.map((_, i) => fmOffer('p-fm-eggs', i, 3.99, { sourceId: 'col-fm-core' })),
+  // Multigrain Bread
+  ...fmVenueIds.map((_, i) => fmOffer('p-fm-multigrain', i, 2.49, { sourceId: 'col-fm-core' })),
+  // Chicken Breast
+  ...fmVenueIds.map((_, i) => fmOffer('p-fm-chicken', i, 6.99, { sourceId: 'col-fm-core' })),
+  // Sparkling Water
+  ...fmVenueIds.map((_, i) => fmOffer('p-fm-water', i, 4.49, { sourceId: 'col-fm-core' })),
+  // Butter
+  ...fmVenueIds.map((_, i) => fmOffer('p-fm-butter', i, 2.99, { sourceId: 'col-fm-core' })),
+  // Paper Towels
+  ...fmVenueIds.map((_, i) => fmOffer('p-fm-towels', i, 3.49, { sourceId: 'col-fm-core' })),
+  // Potato Chips
+  ...fmVenueIds.map((_, i) => fmOffer('p-fm-chips', i, 2.99, { sourceId: 'col-fm-core' })),
+  // Hand Soap
+  ...fmVenueIds.map((_, i) => fmOffer('p-fm-handsoap', i, 2.49, { sourceId: 'col-fm-core' })),
+  // Ground Beef
+  ...fmVenueIds.map((_, i) => fmOffer('p-fm-ground-beef', i, 7.49, { sourceId: 'col-fm-core' })),
+  // Toothpaste
+  ...fmVenueIds.map((_, i) => fmOffer('p-fm-toothpaste', i, 3.29, { sourceId: 'col-fm-core' })),
+  // OJ
+  ...fmVenueIds.map((_, i) => fmOffer('p-fm-oj', i, 3.99, { sourceId: 'col-fm-core' })),
+
+  // ── Premium Selection: City Center, Westside, Harbor, Eastgate ──
+  ...[0, 1, 3, 5].map(i => fmOffer('p-fm-avocado', i, 3.49, { sourceId: 'col-fm-premium' })),
+  ...[0, 1, 3, 5].map(i => fmOffer('p-fm-salmon', i, 12.99, { sourceId: 'col-fm-premium' })),
+  ...[0, 1, 3, 5].map(i => fmOffer('p-fm-sourdough', i, 4.99, { sourceId: 'col-fm-premium' })),
+  ...[0, 1, 3, 5].map(i => fmOffer('p-fm-croissants', i, 3.99, { sourceId: 'col-fm-premium' })),
+  ...[0, 1, 3, 5].map(i => fmOffer('p-fm-shrimp', i, 11.99, { sourceId: 'col-fm-premium' })),
+  ...[0, 1, 3, 5].map(i => fmOffer('p-fm-ipa', i, 3.49, { sourceId: 'col-fm-premium' })),
+  ...[0, 1, 3, 5].map(i => fmOffer('p-fm-kombucha', i, 4.29, { sourceId: 'col-fm-premium' })),
+  ...[0, 1, 3, 5].map(i => fmOffer('p-fm-coffee', i, 8.99, { sourceId: 'col-fm-premium' })),
+  ...[0, 1, 3, 5].map(i => fmOffer('p-fm-chocolate', i, 3.99, { sourceId: 'col-fm-premium' })),
+  ...[0, 1, 3, 5].map(i => fmOffer('p-fm-oatmilk', i, 2.99, { sourceId: 'col-fm-premium' })),
+
+  // ── Everyday Essentials: North End, University, South Park ──
+  ...[2, 4, 6].map(i => fmOffer('p-fm-yogurt', i, 2.79, { sourceId: 'col-fm-everyday' })),
+  ...[2, 4, 6].map(i => fmOffer('p-fm-cheddar', i, 4.49, { sourceId: 'col-fm-everyday' })),
+  ...[2, 4, 6].map(i => fmOffer('p-fm-pork', i, 5.99, { sourceId: 'col-fm-everyday' })),
+  ...[2, 4, 6].map(i => fmOffer('p-fm-trail', i, 4.99, { sourceId: 'col-fm-everyday' })),
+  ...[2, 4, 6].map(i => fmOffer('p-fm-granola', i, 3.49, { sourceId: 'col-fm-everyday' })),
+  ...[2, 4, 6].map(i => fmOffer('p-fm-cleaner', i, 3.99, { sourceId: 'col-fm-everyday' })),
+  ...[2, 4, 6].map(i => fmOffer('p-fm-dish', i, 2.49, { sourceId: 'col-fm-everyday' })),
+  ...[2, 4, 6].map(i => fmOffer('p-fm-detergent', i, 9.99, { sourceId: 'col-fm-everyday' })),
+  ...[2, 4, 6].map(i => fmOffer('p-fm-shampoo', i, 4.99, { sourceId: 'col-fm-everyday' })),
+  ...[2, 4, 6].map(i => fmOffer('p-fm-deodorant', i, 3.99, { sourceId: 'col-fm-everyday' })),
+
+  // ── Overlapping: some products in premium venues also ──
+  ...[0, 1, 3, 5].map(i => fmOffer('p-fm-yogurt', i, 3.29, { priceOverridden: true, sourceId: 'col-fm-premium' })),
+  ...[0, 1, 3, 5].map(i => fmOffer('p-fm-cheddar', i, 5.49, { priceOverridden: true, sourceId: 'col-fm-premium' })),
+
+  // ── Misc products at select venues (direct, not collection-based) ──
+  ...[2, 4, 6].map(i => fmOffer('p-fm-spinach', i, 2.49, { source: 'direct' })),
+  ...[0, 1, 3].map(i => fmOffer('p-fm-spinach', i, 2.99, { source: 'direct', priceOverridden: true })),
+  ...[0, 1, 2, 3, 4, 5, 6].map(i => fmOffer('p-fm-tomatoes', i, 2.99, { source: 'direct' })),
+  ...[0, 1, 3, 5].map(i => fmOffer('p-fm-strawberries', i, 4.99, { source: 'direct' })),
+  ...[0, 1].map(i => fmOffer('p-fm-broccoli', i, 1.99, { source: 'direct' })),
+  ...[0, 1, 3, 5].map(i => fmOffer('p-fm-ciabatta', i, 3.49, { source: 'direct' })),
+
+  // ── Varied statuses to demonstrate filtering ──
+  // Strawberries out of stock at Harbor
+  fmOffer('p-fm-strawberries', 3, 4.99, { status: 'out_of_stock', source: 'direct' }),
+  // Salmon paused at City Center
+  fmOffer('p-fm-salmon', 0, 12.99, { status: 'paused', pausedUntil: 'Tomorrow 08:00', sourceId: 'col-fm-premium' }),
+  // Croissants inactive at Eastgate
+  fmOffer('p-fm-croissants', 5, 3.99, { status: 'inactive', sourceId: 'col-fm-premium' }),
+  // IPA paused at Westside
+  fmOffer('p-fm-ipa', 1, 3.49, { status: 'paused', pausedUntil: '48 hours', sourceId: 'col-fm-premium' }),
+  // Shrimp out of stock at Harbor
+  fmOffer('p-fm-shrimp', 3, 11.99, { status: 'out_of_stock', sourceId: 'col-fm-premium' }),
+];
+
+// Deduplicate: the varied-status offers above override the default ones.
+// Keep last occurrence (status overrides come after defaults).
+const freshOffersDeduplicated = freshOffers.reduce<Offer[]>((acc, offer) => {
+  const idx = acc.findIndex(o => o.id === offer.id);
+  if (idx >= 0) acc[idx] = offer;
+  else acc.push(offer);
+  return acc;
+}, []);
+
+const freshCollections: Collection[] = [
+  { id: 'col-fm-core', businessId: 'biz-fm', name: 'Core Essentials', status: 'active', productIds: ['p-fm-bananas', 'p-fm-milk', 'p-fm-eggs', 'p-fm-multigrain', 'p-fm-chicken', 'p-fm-water', 'p-fm-butter', 'p-fm-towels', 'p-fm-chips', 'p-fm-handsoap', 'p-fm-ground-beef', 'p-fm-toothpaste', 'p-fm-oj'], sharedToVenueIds: fmVenueIds },
+  { id: 'col-fm-premium', businessId: 'biz-fm', name: 'Premium Selection', status: 'active', productIds: ['p-fm-avocado', 'p-fm-salmon', 'p-fm-sourdough', 'p-fm-croissants', 'p-fm-shrimp', 'p-fm-ipa', 'p-fm-kombucha', 'p-fm-coffee', 'p-fm-chocolate', 'p-fm-oatmilk', 'p-fm-yogurt', 'p-fm-cheddar'], sharedToVenueIds: ['v-fm-city', 'v-fm-west', 'v-fm-harbor', 'v-fm-east'] },
+  { id: 'col-fm-everyday', businessId: 'biz-fm', name: 'Everyday Essentials', status: 'active', productIds: ['p-fm-yogurt', 'p-fm-cheddar', 'p-fm-pork', 'p-fm-trail', 'p-fm-granola', 'p-fm-cleaner', 'p-fm-dish', 'p-fm-detergent', 'p-fm-shampoo', 'p-fm-deodorant'], sharedToVenueIds: ['v-fm-north', 'v-fm-uni', 'v-fm-south'] },
+];
+
+const freshModifierGroups: ModifierGroup[] = [
+  { id: 'mg-fm-weight', businessId: 'biz-fm', name: 'Pack Size', required: false, minSelections: 0, maxSelections: 1, status: 'active', optionIds: ['mo-fm-single', 'mo-fm-family'] },
+];
+
+const freshModifierOptions: ModifierOption[] = [
+  { id: 'mo-fm-single', modifierGroupId: 'mg-fm-weight', name: 'Standard', priceDelta: 0, status: 'active', pausedUntil: null },
+  { id: 'mo-fm-family', modifierGroupId: 'mg-fm-weight', name: 'Family Size', priceDelta: 3.00, status: 'active', pausedUntil: null },
+];
+
 // ─── Export per scenario ─────────────────────────────────────────
 
 export interface ScenarioData {
@@ -386,6 +584,21 @@ export function getScenarioData(scenarioId: string): ScenarioData {
         modifierOptions: quickstopModifierOptions,
         bundles: [],
         collections: quickstopCollections,
+      };
+    case 'freshmart':
+      return {
+        businesses: [freshBusiness],
+        venues: freshVenues,
+        products: freshProducts,
+        offers: freshOffersDeduplicated,
+        menus: [],
+        menuCategories: [],
+        menuItems: [],
+        categories: freshCategories,
+        modifierGroups: freshModifierGroups,
+        modifierOptions: freshModifierOptions,
+        bundles: [],
+        collections: freshCollections,
       };
     default:
       throw new Error(`Unknown scenario: ${scenarioId}`);
