@@ -32,9 +32,10 @@ import {
 interface MenuCategorySectionProps {
   category: MenuCategory;
   isSharedAtVenueLevel: boolean;
+  statusFilter?: ItemStatus | 'all';
 }
 
-export function MenuCategorySection({ category, isSharedAtVenueLevel }: MenuCategorySectionProps) {
+export function MenuCategorySection({ category, isSharedAtVenueLevel, statusFilter = 'all' }: MenuCategorySectionProps) {
   const menuItems = useAppStore(s => s.menuItems);
   const products = useAppStore(s => s.products);
   const offers = useAppStore(s => s.offers);
@@ -120,6 +121,7 @@ export function MenuCategorySection({ category, isSharedAtVenueLevel }: MenuCate
               const product = products.find(p => p.id === mi.productId);
               const offer = offers.find(o => o.id === mi.offerId);
               if (!product || !offer) return null;
+              if (statusFilter !== 'all' && offer.status !== statusFilter) return null;
 
               return (
                 <SortableMenuItemRow
