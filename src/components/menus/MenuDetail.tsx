@@ -7,6 +7,15 @@ import { MenuSwitcher } from './MenuSwitcher';
 import { MenuCategorySection } from './MenuCategorySection';
 import { Clock, Settings, Plus } from 'lucide-react';
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { useState } from 'react';
+import { ItemStatus } from '@/store/types';
+import {
   DndContext,
   closestCenter,
   KeyboardSensor,
@@ -38,6 +47,8 @@ export function MenuDetail({ menuId }: MenuDetailProps) {
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
     useSensor(KeyboardSensor),
   );
+
+  const [statusFilter, setStatusFilter] = useState<ItemStatus | 'all'>('all');
 
   if (!menu) return null;
 
@@ -82,25 +93,39 @@ export function MenuDetail({ menuId }: MenuDetailProps) {
             {menu.hours}
           </p>
         </div>
-        <div className="flex gap-2">
-          {!isSharedAtVenueLevel && (
+        <div className="flex flex-col items-end gap-2">
+          <div className="flex gap-2">
+            {!isSharedAtVenueLevel && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => openModal('create-menu-category', { menuId })}
+                className="gap-1.5"
+              >
+                <Plus className="h-3.5 w-3.5" />
+                Add Category
+              </Button>
+            )}
             <Button
               variant="outline"
               size="sm"
-              onClick={() => openModal('create-menu-category', { menuId })}
-              className="gap-1.5"
+              onClick={() => openSlideOver('menu-settings', { menuId })}
             >
-              <Plus className="h-3.5 w-3.5" />
-              Add Category
+              <Settings className="h-3.5 w-3.5" />
             </Button>
-          )}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => openSlideOver('menu-settings', { menuId })}
-          >
-            <Settings className="h-3.5 w-3.5" />
-          </Button>
+          </div>
+          <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as ItemStatus | 'all')}>
+            <SelectTrigger className="h-8 w-[140px] text-xs">
+              <SelectValue placeholder="Filter status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="active">Active</SelectItem>
+              <SelectItem value="paused">Paused</SelectItem>
+              <SelectItem value="inactive">Inactive</SelectItem>
+              <SelectItem value="out_of_stock">Out of Stock</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
 
@@ -112,6 +137,7 @@ export function MenuDetail({ menuId }: MenuDetailProps) {
                 key={cat.id}
                 category={cat}
                 isSharedAtVenueLevel={isSharedAtVenueLevel}
+                statusFilter={statusFilter}
               />
             ))}
           </div>
