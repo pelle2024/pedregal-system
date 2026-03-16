@@ -19,6 +19,7 @@ import { AddToVenuesModal } from '@/components/modals/AddToVenuesModal';
 import { CreateCollectionModal } from '@/components/modals/CreateCollectionModal';
 import { AddProductsToCollectionModal } from '@/components/modals/AddProductsToCollectionModal';
 import { ShareCollectionToVenuesModal } from '@/components/modals/ShareCollectionToVenuesModal';
+import { CreateCatalogProductModal } from '@/components/modals/CreateCatalogProductModal';
 
 export default function Home() {
   return (
@@ -43,6 +44,7 @@ export default function Home() {
       <CreateCollectionModal />
       <AddProductsToCollectionModal />
       <ShareCollectionToVenuesModal />
+      <CreateCatalogProductModal />
     </AppShell>
   );
 }

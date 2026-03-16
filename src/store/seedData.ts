@@ -380,6 +380,12 @@ const freshProducts: Product[] = [
   { id: 'p-fm-toothpaste', businessId: 'biz-fm', title: 'Toothpaste 75ml', description: 'Fluoride whitening toothpaste', image: '/placeholder.svg', categoryId: 'cat-fm-care', modifierGroupIds: [] },
   { id: 'p-fm-shampoo', businessId: 'biz-fm', title: 'Shampoo 400ml', description: 'Daily care shampoo', image: '/placeholder.svg', categoryId: 'cat-fm-care', modifierGroupIds: [] },
   { id: 'p-fm-deodorant', businessId: 'biz-fm', title: 'Deodorant Roll-on', description: '48-hour protection', image: '/placeholder.svg', categoryId: 'cat-fm-care', modifierGroupIds: [] },
+  // Unassigned catalog products (not sold at any store yet)
+  { id: 'p-fm-hummus', businessId: 'biz-fm', title: 'Classic Hummus 200g', description: 'Creamy chickpea hummus', image: '/placeholder.svg', categoryId: 'cat-fm-snacks', modifierGroupIds: [] },
+  { id: 'p-fm-pesto', businessId: 'biz-fm', title: 'Basil Pesto 180g', description: 'Fresh basil and pine nut pesto', image: '/placeholder.svg', categoryId: 'cat-fm-produce', modifierGroupIds: [] },
+  { id: 'p-fm-coconut-water', businessId: 'biz-fm', title: 'Coconut Water 500ml', description: 'Pure coconut water', image: '/placeholder.svg', categoryId: 'cat-fm-bev', modifierGroupIds: [] },
+  { id: 'p-fm-quinoa', businessId: 'biz-fm', title: 'Organic Quinoa 500g', description: 'White organic quinoa', image: '/placeholder.svg', categoryId: 'cat-fm-snacks', modifierGroupIds: [] },
+  { id: 'p-fm-almond-butter', businessId: 'biz-fm', title: 'Almond Butter 250g', description: 'Smooth roasted almond butter', image: '/placeholder.svg', categoryId: 'cat-fm-snacks', modifierGroupIds: [] },
 ];
 
 // Helper to create offers across multiple venues
