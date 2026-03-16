@@ -25,6 +25,7 @@ export function TabBar() {
     return null;
   });
   const bizVertical = useAppStore(s => s.businesses[0]?.verticalType ?? 'restaurant');
+  const isMultiVenue = useAppStore(s => s.isMultiVenue());
   const activeTab = useAppStore(s => s.context.activeTab);
   const setActiveTab = useAppStore(s => s.setActiveTab);
 
@@ -38,11 +39,13 @@ export function TabBar() {
       }
     }
     switch (vertical) {
-      case 'restaurant': return ['menus', 'all-items', 'modifiers', 'bundles'];
+      case 'restaurant': return isMultiVenue
+        ? ['menus', 'all-items', 'modifiers', 'bundles']
+        : ['menus', 'modifiers', 'bundles'];
       case 'hybrid': return ['all-items', 'menus', 'categories', 'modifiers', 'bundles'];
       default: return ['all-items', 'categories', 'modifiers'];
     }
-  }, [level, venueVertical, bizVertical]);
+  }, [level, venueVertical, bizVertical, isMultiVenue]);
 
   return (
     <div className="border-b border-gray-200 bg-white px-6">
